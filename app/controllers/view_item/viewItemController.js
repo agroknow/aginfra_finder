@@ -57,6 +57,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 			//every item is a JSON
 			console.log(data.results[0]);
 			var thisJson = data.results[0];
+			
 
 			//WE USE ONLY 'EN' FOR NOW
 			if (thisJson.languageBlocks.en !== undefined) {
@@ -74,7 +75,9 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 			}
 
 			//ORGANIZATION
-			thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
+			if (thisJson.contributors.hasOwnProperty('organization')) {
+				thisJson.contributors[0].organization !== undefined ? $scope.item_organization = thisJson.contributors[0].organization : $scope.item_organization = '-';
+			}
 
 			//LANGUAGE
 			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
@@ -114,7 +117,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 
 
 
-/*
+
 
 			if (thisJson.tokenBlock.taxonPaths['Organic.Edunet Ontology'] !== undefined) {
 				console.log(thisJson.tokenBlock.taxonPaths);
@@ -129,8 +132,7 @@ listing.controller("viewItemController", function($scope, $http, $location, $rou
 			} else {
 				$scope.item_classification = '-';
 			}
-*/
-
+		
 			if(thisJson.expressions[0].manifestations[0].items[0].url!=undefined) {
 				$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
 

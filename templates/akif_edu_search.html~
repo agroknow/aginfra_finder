@@ -1,17 +1,14 @@
-<div class="search-block" ng-controller="mainController" ng-init="init_finder('agrif','publications')" >
-
-<div class="clear-btn"><a href="#/" class="btn btn-warning btn-xs" aria-label="Erase">
-
-  <span class="glyphicon glyphicon-remove" aria-hidden="true"></span> Clear Search</a><br/>Displaying results: <b>{{result_set_start}}</b> - <b>{{result_set_end}}</b></div>
+<div ng-controller="mainController" ng-init="init_finder('akif','educational')" >
+	<a href="#/" > Home Page</a>
 	<form ng-submit="submit()" class="form-wrapper cf">
-		        <input ng-model="search_query" name="search_query" type="text" placeholder="Type your search terms here..." >
-		        <button type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+		        <input ng-model="search_query" name="search_query" type="text" placeholder="Search here..." >
+		        <button type="submit">Search</button>
 		    </form>
 
 	<!-- FACETS MOBILE -->
 	<div id="facets" class="col-xs-12 hidden-sm hidden-md hidden-lg" ng-show="enableFacets" ng-controller="facetsController">
             	<!-- active facets -->
-            	<div class="facet_title">Available facets</div>
+            	<div class="facet_title">111Available facets</div>
 	              <div ng-repeat="facet in facets" style="float:left; margin:0 2px;">
 			          <a class="dropdown-toggle btn btn-default">
 					    {{mapping['facets'][facet] || facet}}
@@ -32,7 +29,7 @@
 	            <div id="facets" ng-controller="facetsController">
 
             	<!-- active facets -->
-            	
+            	<div class="facet_title">111Available facets</div>
 				<!-- bootstrap -->
 	             <accordion >
 				    <accordion-group heading="{{mapping['facets'][facet] || facet}}" ng-repeat="facet in facets">
@@ -43,39 +40,35 @@
 		            	</a>
 				    </accordion-group>
 				  </accordion>
-					
 
+				  <div><a class="btn btn-xs btn-danger" href="javascript:;" ng-click="resetLocation()">Clear Search</a></div>
 
 	            </div>
 			</div>
 
 	<!-- listing -->
-	<div id="listing_container" class="col-xs-12 col-sm-6 col-md-9 ">
+	<div id="listing_container" class="col-xs-12 col-sm-9 col-md-9 ">
 			<div id="active_facets" ng-show="enableFacets" ng-controller="facetsController">
 					 <!-- active facets -->
 		             <div ng-show="enableFacets" class="facets row">
+		            	<div class="facet_title" >Active facets</div>
 		            	<div ng-repeat="links in activeFacets" style="padding-left:10px">
 		            		<a href="javascript:;" ng-click="deselectFacet(links)">{{mapping[links.facet][links.term] || links.term}} <span class="remove_facet"> x </span></a>
 	            		</div>
 		            </div>
 	            </div>
 
-			<h3 class="result_inform" >Search for "<span class="active">{{query.split("=")[1]}}</span>" returned <span class="active">{{total}} results</span></h3>  
+			<h3 class="result_inform" >Search for "<span class="active">{{query.split("=")[1]}}</span>" returned total: <span class="active">{{total}} results</span></h3>
 
 			<!-- Top Pagination -->
 			<div class="pagination hidden-xs" ng-controller="paginationController" ng-show="enablePaginationTop" ng-init="initPagination()" >
 		            <div class="center">
-				<ul class="pagination pager-block">
-				    <li><a class="first btn btn-default" ng-click="goToPage(1)"><span class="glyphicon glyphicon-step-backward"></span> First </a></li>
-			            <li><a class="prev btn btn-default" ng-click="goToPage(currentPage-1)"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a></li>
-			            	<li ng-repeat="link in pages" >
-				            	<a class="btn btn-default active_{{currentPage == link}}" ng-click="goToPage(link)" >{{link}}</a>
-				            </li>
-			            <li><a class="next btn btn-default" ng-click="goToPage(currentPage+1)"><span class="glyphicon glyphicon-chevron-right"></span> Next</a></li>
-				    <li><a class="last btn btn-default" ng-click="goToPage(-1)"><span class="glyphicon glyphicon-step-forward"></span> Last</a></li>
-				</ul>
+			            <a href="#" class="prev btn btn-default" ng-click="goToPage(currentPage-1)"> Previous </a>
+			            	<p ng-repeat="link in pages" >
+				            	<a href="#" class="btn btn-default active_{{currentPage == link}}" ng-click="goToPage(link)" >{{link}}</a>
+				            </p>
+			            <a href="#" class="next btn btn-default" ng-click="goToPage(currentPage+1)"> Next </a>
 		            </div>
-			
 	            </div>
 
 			<!-- listing -->
@@ -87,49 +80,41 @@
 
 					<!-- loading and message above listing-->
 					<div style="min-height:10px;">
-						<progressbar ng-show="loading" class="progress active" value="http_get_prog" type="success">searching...</progressbar>
+						<progressbar ng-show="loading" class="progress-striped active" value="http_get_prog" type="success">searching...</progressbar>
 					</div>
 					<alert type="danger" ng-show="error">
-						Something went wrong! Please try again later!
+						Hmm... Something went wrong! Please try again later :)
 					</alert>
 
 					<!-- results -->
 					<li class="snippet" ng-repeat="result in filtered = (results | filter:filterResults) ">
-						<p class="snippet-title"><a href="#/publication-item/{{result.id}}_{{result.set}}">{{result.title}}</a></p>
-						<p class="snippet-desc">{{result.abstract}}</p>
+						<span style="font-style:oblique; font-size:1.3em;">{{result.title}}</span>
+						<br> {{result.description}}
 						<br> <b><span class="hidden-xs">Keywords:</span></b>
-							 <span class="snippet-keywords" ng-repeat="keys in result.keywords"><a href="#/publications/search/?q={{keys}}">{{keys}}</a><span ng-show="!$last">, </span></span>
+							 <a ng-repeat="keys in result.keywords" href="#/educational/search/?q={{keys}}" >{{keys}}, </a>
 						<br>
-						 <!--<a class="btn btn-sm btn-default" href="#/publication-item/{{result.id}}_{{result.set}}"> View More </a>-->
+						 <a class="btn btn-sm btn-default" href="#/item/{{result.id}}_{{result.set}}"> View More </a>
 						<!--  <a class="btn btn-sm btn-default" target="_self" href="item_translations.html?id={{result.id}}_{{result.set}}"> View Translations </a> -->
 					</li>
 
 				</ul>
 		</div>
-		
 
 			<!-- LOAD MORE ITEMS -->
-			<!--<div ng-controller="paginationController" style="text-align:center;">
+			<div ng-controller="paginationController" style="text-align:center;">
 			<a class="btn btn-success" href="javascript:;" ng-click="loadMore(currentPage+1)"> Load More </a>
 			<a class="btn btn-default" href="javascript:;" ng-click="scrollToTop()"> Take me to the Top ^ </a>
-		</div>-->
+		</div>
 
 			<!-- Bottom Pagination -->
-			
 			<div class="pagination hidden-xs" ng-controller="paginationController" ng-show="enablePaginationBottom" ng-init="initPagination()" >
 		            <div class="center">
-			            <ul class="pagination pager-block">
-				    <li><a class="first btn btn-default" ng-click="goToPage(1)"><span class="glyphicon glyphicon-step-backward"></span> First </a></li>
-			            <li><a class="prev btn btn-default" ng-click="goToPage(currentPage-1)"><span class="glyphicon glyphicon-chevron-left"></span> Previous </a></li>
-			            	<li ng-repeat="link in pages" >
-				            	<a class="btn btn-default active_{{currentPage == link}}" ng-click="goToPage(link)" >{{link}}</a>
-				            </li>
-			            <li><a class="next btn btn-default" ng-click="goToPage(currentPage+1)"><span class="glyphicon glyphicon-chevron-right"></span> Next</a></li>
-				    <li><a class="last btn btn-default" ng-click="goToPage(-1)"><span class="glyphicon glyphicon-step-forward"></span> Last</a></li>
-				</ul>
-				<a class="btn btn-default" href="javascript:;" ng-click="scrollToTop()"><span class="glyphicon glyphicon-chevron-up"></span> Take me to the Top</a>
+			            <a href="#" class="prev btn btn-default" ng-click="goToPage(currentPage-1)"> Previous </a>
+			            	<p ng-repeat="link in pages" >
+				            	<a href="#" class="btn btn-default active_{{currentPage == link}}" ng-click="goToPage(link)" >{{link}}</a>
+				            </p>
+			            <a href="#" class="next btn btn-default" ng-click="goToPage(currentPage+1)"> Next </a>
 		            </div>
 	            </div>
 		</div>
 </div>
-

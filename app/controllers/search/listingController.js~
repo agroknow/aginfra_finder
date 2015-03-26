@@ -248,11 +248,13 @@
 						}
 
 						var keywords='';
-						for( i in thisJson.languageBlocks[$scope.selectedLanguage][snippet_elements[index]] ) {
+						var keyword_string = thisJson.languageBlocks[$scope.selectedLanguage][snippet_elements[index]]+"";	
+						var keywords_array = keyword_string.split(";");						
+						for( i in keywords_array ) {
 							if( i != 0 ) {
-								keywords += ",\""+thisJson.languageBlocks[$scope.selectedLanguage][snippet_elements[index]][i]+"\"";
+								keywords += ",\""+keywords_array[i]+"\"";
 							} else {
-								keywords += "\""+thisJson.languageBlocks[$scope.selectedLanguage][snippet_elements[index]][i]+"\"";
+								keywords += "\""+keywords_array[i]+"\"";
 							}
 						}
 						equals += "\"" + snippet_elements[index] + "\" : [" + keywords + "]";

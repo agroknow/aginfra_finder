@@ -38,6 +38,9 @@
 			<a href="http://www.aginfra.eu" target="_blank" title="agINFRA"><img src="assets/images/aginfra_logo.png" height="50"></a></span><br/><br/>
 		</div>
 
+	<footer id="footer">
+		<center><p class="footer"><table><tr><td>Powered by </td><td><a href="http://www.akstem.com" target="_blank"><img alt="Agro-Know Stem" width=200 src="assets/images/STEM_logo.png"/></a></td></tr></table></p></center>
+	</footer>
 
 <!-- INCLUDE APPLICATION SPECIFIC CSS AND JAVASCRIPT -->
 

@@ -16,7 +16,7 @@ $scope.selectFacet = function(term, parent, count)
 	/*check if facet is in active ones*/
 	for(active in $scope.activeFacets){
 		if(facet.term == $scope.activeFacets[active].term){
-			flag=true;
+			flag=true
 		}
 	}
 

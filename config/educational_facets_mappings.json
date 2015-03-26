@@ -351,6 +351,42 @@
       "machine": "faocapacityportal"
     },
     {
+      "human": "World Organization for Animal Health (OIE)",
+      "machine": "aglrgfspoie"
+    },
+{
+      "human": "World Organization for Animal Health (OIE)",
+      "machine": "AGLRGFSPOIE"
+    },
+    {
+      "human": "YouTube Collection",
+      "machine": "aglryoutube"
+    },
+    {
+      "human": "IFAD",
+      "machine": "aglrifad"
+    },
+    {
+      "human": "IFPRI",
+      "machine": "aglrscientific"
+    },
+    {
+      "human": "IUFOST courses",
+      "machine": "AGLRGFSPIUFOST"
+    },
+    {
+      "human": "IUFOST courses",
+      "machine": "aglrgfspiufost"
+    },
+    {
+      "human": "GMA collection",
+      "machine": "AGLRGFSPGMA"
+    },
+    {
+      "human": "GMA collection",
+      "machine": "aglrgfspgma"
+    },
+    {
       "human": "Traglor",
       "machine": "traglor"
     },

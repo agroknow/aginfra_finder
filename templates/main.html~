@@ -6,7 +6,7 @@
 	    <form ng-submit="submit('publications')" class="form-wrapper cf">
 		    <input ng-model="search_query" name="search_query" type="text" placeholder="Type your search terms here..." >
 		    <button type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-		    <span class="search-help">Type "*" to view all publications.</span>
+		    <span class="search-help">Type "*" to view all results.</span>
 		</form>
 	</div>
 

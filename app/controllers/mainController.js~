@@ -111,7 +111,7 @@ listing.controller("mainController", function($rootScope, $scope, $http, $routeP
 	$scope.init_finder = function(schema, facets_type) {
 		switch(facets_type) {
 			case 'publications' :
-				$scope.facets = ['language', 'controlled.type.value', 'controlled.classification.AGROVOC', 'format'];
+				$scope.facets = ['language', 'controlled.type.value', 'controlled.classification.AGROVOC',  'format'];
 				//$scope.limit_facets = data.limit_facets;
 				mappings_file = 'config/publications_facets_mappings.json';
 				break;

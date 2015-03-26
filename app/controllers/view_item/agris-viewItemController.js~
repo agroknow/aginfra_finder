@@ -116,7 +116,7 @@ listing.controller("agris-viewItemController", function($scope, $http, $location
 			//LANGUAGE
 			thisJson.expressions[0].language !== undefined ? $scope.item_language = language_mapping[thisJson.expressions[0].language] : $scope.item_language = '-';
 			if ($scope.item_resource_url = thisJson.expressions[0].manifestations[0].items) {
-				$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].location;
+				$scope.item_resource_url = thisJson.expressions[0].manifestations[0].items[0].url;
 			}
 			
 			//PAGES

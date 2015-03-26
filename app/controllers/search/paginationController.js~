@@ -48,7 +48,7 @@ listing.controller("paginationController", function($rootScope, $scope, sharedPr
 	$scope.goToPage = function(pageNum){
 		if (pageNum == -1) {
 			$scope.numOfPages = sharedProperties.getTotal()/$scope.pageSize;
-			$rootScope.currentPage = Math.ceil($scope.numOfPages);
+			$rootScope.currentPage = Math.floor($scope.numOfPages);
 			$scope.findElements(false, 'classic'); //calls the search but replaces existing elements in listing
 		}
 		else {

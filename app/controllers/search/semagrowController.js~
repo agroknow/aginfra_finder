@@ -1,0 +1,17 @@
+listing.controller("semagrowController", function($rootScope, $routeParams, $scope, $http, $timeout){
+	$scope.resources = []
+	var data = $routeParams.q;
+	var SGquery = 'http://localhost:8080/semagrowrest/v1/semagrowrest?callback=JSON_CALLBACK&q='+data+'&page_size=10';
+	console.log(SGquery);
+	$http.jsonp(SGquery).success(function(data) {
+			//$timeout(function() {$scope.loaded=true;}, 3000);
+			$scope.loaded=true;
+			for (resource in data) {
+				$scope.resources.push(data[resource]["o"]);
+			}
+			
+		})
+		.error(function(error) {
+			alert("Not OK!");
+		});
+	});
